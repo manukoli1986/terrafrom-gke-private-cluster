@@ -1,9 +1,9 @@
-#Provision GKE via terrafrom
+# Provision GKE via terrafrom
 
 
 This repo is to Provision a GKE Private Cluster learn guide, containing Terraform configuration files to provision an GKE Private cluster on GCP.
 
-##Implementation
+## Implementation
 1. Created New VPC
 2. Created Sub-network with CIDR
 3. Created Continer Cluster with default node pool which deletes once provision is done
@@ -12,7 +12,7 @@ This repo is to Provision a GKE Private Cluster learn guide, containing Terrafor
 6. MOST-IMPORTANT- Make sure you have setup gcloud on workstation and using that configuration which will help terraform to talk to google APIs
 
 
-##Install and configure GCloud
+## Install and configure GCloud
 First, install the Google Cloud CLI and initialize it.
 ```
 $ gcloud init
@@ -22,7 +22,7 @@ Once you've initialized gcloud (signed in, selected project), add your account t
 $ gcloud auth application-default login
 ```
 
-###Lets initialize Terraform workspace and provision GKE Cluster
+### Lets initialize Terraform workspace and provision GKE Cluster
 
 ```
 $terraform init
