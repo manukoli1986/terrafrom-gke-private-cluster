@@ -6,4 +6,6 @@ config.json
 
 # .tfstate files
 *.tfstate
+terraform.tfstate
+terraform.tfstate*
 *.tfstate.*
