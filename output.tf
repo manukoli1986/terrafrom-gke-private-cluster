@@ -9,7 +9,7 @@ output "region" {
   description = "region"
 }
 
-
-output "How to Access" {
-    description = "choco install gcloudsdk && gcloud init && gcloud auth application-default login && kubectl get pods"
+output "access_cluster" {
+  value       = google_container_cluster.primary.name
+  description = "gcloud container clusters get-credentials <cluster-name> --zone europe-west2-a --project microservice-with-k8"
 }

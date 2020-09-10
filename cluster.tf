@@ -1,10 +1,10 @@
 
 resource "google_container_node_pool" "mynodepool" {
-  name              = "my-node-pool"
-  location          = var.zone_name
-  cluster           = google_container_cluster.primary.name
-  project           = "microservice-with-k8"
-  node_count        = 1
+  name       = "${var.project_id}-node-pool"
+  location   = var.zone_name
+  cluster    = google_container_cluster.primary.name
+  project    = var.project_name
+  node_count = 1
   node_config {
     machine_type = "e2-medium"
   }
@@ -20,9 +20,11 @@ resource "google_container_node_pool" "mynodepool" {
 }
 
 resource "google_container_cluster" "primary" {
-  name                     = "k8-cluster"
+  name                     = "k8-${var.project_id}-gke"
   location                 = var.zone_name
-  project                  = "microservice-with-k8"
+  project                  = var.project_name
+  network                  = google_compute_network.k8-vpc.name
+  subnetwork               = google_compute_subnetwork.k8-private-ip-range.name
   remove_default_node_pool = true
   initial_node_count       = 1
   master_auth {
