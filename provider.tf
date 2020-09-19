@@ -1,5 +1,5 @@
 provider "google" {
   credentials = file("config.json")
-  project     = "	microservice-with-k8"
-  region      = "europe-west1"
+  project     = "ros-project-287920"
+  region      = "europe-west2"
 }
