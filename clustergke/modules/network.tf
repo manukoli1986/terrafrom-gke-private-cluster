@@ -16,6 +16,17 @@ resource "google_compute_subnetwork" "k8-private-ip-range" {
   region        = var.region_name
   network       = google_compute_network.k8-vpc.id
   project       = var.project_name
+# Adding Secondary IP range for pods and services.
+  secondary_ip_range = [
+    {
+      range_name    = "pod-range"
+      ip_cidr_range = var.cluster_secondary_name
+    },
+    {
+      range_name    = "service-range"
+      ip_cidr_range = var.cluster_service_name
+    }
+  ]
 }
 
 

@@ -43,11 +43,11 @@ resource "google_container_cluster" "primary" {
   logging_service         = "logging.googleapis.com/kubernetes"
   remove_default_node_pool = true
   initial_node_count       = 1
+  min_master_version = data.google_container_engine_versions.gkeversion.latest_master_version
+  node_version            = data.google_container_engine_versions.gkeversion.latest_node_version
   ip_allocation_policy {
-    cluster_ipv4_cidr_block       = var.cluster_secondary_name
-    cluster_secondary_range_name  = "pod-tier"
-    services_ipv4_cidr_block      = var.cluster_service_name
-    services_secondary_range_name = "service-tier"
+    cluster_secondary_range_name  = "pod-range"
+    services_secondary_range_name = "service-range"
   }
   master_auth {
     username = ""
@@ -66,6 +66,10 @@ resource "google_container_cluster" "primary" {
     daily_maintenance_window {       
       start_time = "03:00"     
     }   
+  }
+  timeouts {
+    create = "30m"
+    update = "20m"
   }
 }
 
